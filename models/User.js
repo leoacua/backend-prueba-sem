@@ -1,22 +1,31 @@
 const mongoose = require('mongoose');
 
-const UserSchema = new mongoose.Schema({
+// Definir el esquema para el modelo de Usuario
+const UsuarioSchema = new mongoose.Schema({
   nombre: {
-    type: String,
-    required: [true, 'El nombre es obligatorio'],
+    type: String, // Tipo de dato: String (Cadena de texto)
+    required: true // Campo requerido
   },
-  email: {
+  correo: {
     type: String,
-    required: [true, 'El correo electrónico es obligatorio'],
-    unique: true,
-    match: [/.+\@.+\..+/, 'Por favor ingresa un correo válido'],
+    required: true,
+    unique: true, // El correo debe ser único en la base de datos
+    match: [/.+\@.+\..+/, 'Por favor ingresa un correo válido'] // Expresión regular para validar el formato del correo
+  },
+  pass: {
+    type: String,
+    required: true
   },
   rol: {
     type: String,
-    default: 'Desarrollador',
+    enum: ['user', 'admin'], // Valores permitidos: 'user' o 'admin'
+    default: 'user' // Valor por defecto: 'user'
   },
-}, {
-  timestamps: true,
+  creadoEn: {
+    type: Date,
+    default: Date.now // Fecha de creación por defecto: fecha actual
+  }
 });
 
-module.exports = mongoose.model('User', UserSchema);
+// Exportar el modelo basado en el esquema
+module.exports = mongoose.model('Usuario', UsuarioSchema);
