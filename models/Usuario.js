@@ -14,7 +14,7 @@ const UsuarioSchema = new mongoose.Schema({
   },
   pass: {
     type: String,
-    required: true
+    required: [true, 'La contraseña es obligatoria']
   },
   rol: {
     type: String,
