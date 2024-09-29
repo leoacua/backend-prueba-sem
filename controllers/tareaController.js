@@ -15,7 +15,7 @@ const crearTarea = async (req, res) => {
     const { titulo, descripcion, prioridad, estado, asignadoA, fechaLimite } = req.body;
 
     try {
-        const nuevaTarea = new Tarea({
+        const nuevaTarea = new Tarea ({
             titulo,
             descripcion,
             prioridad,
@@ -23,11 +23,11 @@ const crearTarea = async (req, res) => {
             asignadoA,
             fechaLimite
         });
-
+        console.log(nuevaTarea)
         const tarea = await nuevaTarea.save();
         res.json(tarea);
     } catch (err) {
-        res.status(500).send('Error en el servidor');
+        res.status(500).send('Error en el servido');
     }
 };
 
