@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 
 // Definición del esquema de la tarea
 const TareaSchema = new mongoose.Schema({
+    _id: { type: mongoose.Schema.Types.ObjectId, auto: true }, // Definir _id como ObjectId
     titulo: { type: String, required: true },
     descripcion: { type: String, required: true },
     prioridad: { type: String, enum: ['Baja', 'Media', 'Alta'], default: 'Baja' },
     estado: { type: String, enum: ['Pendiente', 'En Progreso', 'Completada'], default: 'Pendiente' },
-    asignadoA: { type: mongoose.Schema.Types.ObjectId, ref: 'Usuario' }, // Referencia a la colección de Usuarios
-    proyectoId: { type: mongoose.Schema.Types.ObjectId, ref: 'Proyecto' }, // Referencia a la colección de Proyectos
+    asignadoA: { type: String, required: true }, // Referencia a la colección de Usuarios
     fechaLimite: { type: Date },
     creadoEn: { type: Date, default: Date.now }
 });
