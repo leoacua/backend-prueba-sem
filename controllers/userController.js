@@ -51,7 +51,7 @@ const eliminarUsuario = async (req, res) => {
        console.log(usuario)
       if (!usuario) return res.status(404).json({ msg: 'Usuario no encontrada' });
 
-      await usuarios.findByIdAndRemove(req.params.id);
+      await usuarios.findByIdAndDelete(req.params.id);
       res.json({ msg: 'Usuario eliminada' });
   } catch (err) {
       res.status(500).send('Error en el servidor');

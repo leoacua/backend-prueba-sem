@@ -1,4 +1,8 @@
+const mongoose = require('mongoose');
 const Tarea = require('../models/Tarea');
+
+// Función para validar si un ID es valido
+const esIdValido = (id) => mongoose.Types.ObjectId.isValid(id);
 
 // Obtener todas las tareas
 const obtenerTareas = async (req, res) => {
@@ -52,7 +56,7 @@ const eliminarTarea = async (req, res) => {
 
         if (!tarea) return res.status(404).json({ msg: 'Tarea no encontrada' });
 
-        await Tarea.findByIdAndRemove(req.params.id);
+        await Tarea.findByIdAndDelete(req.params.id);
         res.json({ msg: 'Tarea eliminada' });
     } catch (err) {
         res.status(500).send('Error en el servidor');
