@@ -10,7 +10,9 @@ const app = express();
 conectarDB();
 
 // Middleware para manejo de CORS y JSON
-app.use(cors());
+app.use(cors({ origin: 'https://tu-frontend.vercel.app', // Permitir solicitudes desde el frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,}));
 app.use(express.json());
 
 // Rutas de la API
