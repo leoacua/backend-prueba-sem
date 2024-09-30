@@ -1,7 +1,6 @@
 const tareasRoutes = require('./routes/tareas.js');
-const usuariosRoutes = require('./routes/usuarios.js');
 const express = require('express');
-const conectarDB = require('./config/db');
+const conectarDB = require('./config/db.js');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -15,7 +14,6 @@ app.use(cors());
 app.use(express.json());
 
 // Rutas de la API
-app.use('/api/usuarios',usuariosRoutes);
 app.use('/api/tareas',tareasRoutes);
 
 
